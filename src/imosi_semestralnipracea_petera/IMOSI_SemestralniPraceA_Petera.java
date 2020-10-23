@@ -28,7 +28,7 @@ public class IMOSI_SemestralniPraceA_Petera {
         p1 = 2;
         p2 = 1.5;
         edgespace = 2;
-        divergence = 0.001;
+        divergence = 0.0001;
         cumulativeAverage = Double.MAX_VALUE;
         previousAverage = Double.MIN_VALUE;
         total = 0;
@@ -86,7 +86,8 @@ public class IMOSI_SemestralniPraceA_Petera {
             if (unsuccessful == 0) {
                 writer.append(String.valueOf(0));
             } else {
-                writer.append(String.valueOf(cumulativeAverage));
+                String helperString = String.valueOf(cumulativeAverage);
+                writer.append(helperString.replace('.', ','));
             }
             writer.append('\n');
             
