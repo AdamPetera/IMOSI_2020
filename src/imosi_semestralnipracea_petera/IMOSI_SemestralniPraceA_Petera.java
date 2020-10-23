@@ -22,6 +22,7 @@ public class IMOSI_SemestralniPraceA_Petera {
     static double previousAverage;
     static int successful;
     static int unsuccessful;
+    static int price;
     
     public static void main(String[] args) throws IOException {
         b = 30;
@@ -34,11 +35,14 @@ public class IMOSI_SemestralniPraceA_Petera {
         total = 0;
         successful = 0;
         unsuccessful = 0;
+        price = 5;
         
         FileWriter writer = new FileWriter("data.csv");
-        writer.append("Pokus");
+        writer.append("Iteration");
         writer.append(';');
-        writer.append("Prumer");
+        writer.append("Cumulative 1");
+        writer.append(';');
+        writer.append("Price 1");
         writer.append('\n');
         
         while (Math.abs(previousAverage - cumulativeAverage) > divergence) {
@@ -56,14 +60,11 @@ public class IMOSI_SemestralniPraceA_Petera {
             double sum = nd1.sample() + urd1.sample() + (td.sample() - p1 - p2) + nd2.sample() + edgespace;
             
             //Kontrolování rozměrů
-            double helper;
             
             if (sum > b) {
                 unsuccessful++;
-                helper = 1;
             } else {
-                successful++; 
-                helper = 0;
+                successful++;
             }
             
             //Jestliže je hodnota neúspěšných pokusů větší než 0, vypočítá se
@@ -81,21 +82,17 @@ public class IMOSI_SemestralniPraceA_Petera {
             
             writer.append(String.valueOf(total));
             writer.append(';');
-            /*writer.append(String.valueOf(helper));
-            writer.append(';');*/
+            
             if (unsuccessful == 0) {
                 writer.append(String.valueOf(0));
             } else {
                 String helperString = String.valueOf(cumulativeAverage);
                 writer.append(helperString.replace('.', ','));
             }
-            writer.append('\n');
             
-            System.out.println("Successful:" + successful);
-            System.out.println("Unsuccessful: " + unsuccessful);
-            System.out.println("Cumulative average: " + cumulativeAverage);
-            System.out.println("Difference: " + (Math.abs(previousAverage-cumulativeAverage)));
-            System.out.println("Price for unsuccessful pieces: " + (unsuccessful*5));
+            writer.append(';');
+            writer.append(String.valueOf(unsuccessful*price));
+            writer.append('\n');
 
         }
         
