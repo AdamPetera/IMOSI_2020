@@ -29,7 +29,7 @@ public class IMOSI_SemestralniPraceA_Petera {
         p1 = 2;
         p2 = 1.5;
         edgespace = 2;
-        divergence = 0.0001;
+        divergence = 0.001;
         cumulativeAverage = Double.MAX_VALUE;
         previousAverage = Double.MIN_VALUE;
         total = 0;
@@ -54,7 +54,7 @@ public class IMOSI_SemestralniPraceA_Petera {
             
             NormalDistribution nd1 = new NormalDistribution(7, .4);
             UniformRealDistribution urd1 = new UniformRealDistribution(9.1, 9.9);
-            TriangularDistribution td = new TriangularDistribution(7.6, 8.0, 8.4);
+            TriangularDistribution td = new TriangularDistribution(7.6, 8.0, 8.2);
             NormalDistribution nd2 = new NormalDistribution(6.5, 0.45);
             
             double sum = nd1.sample() + urd1.sample() + (td.sample() - p1 - p2) + nd2.sample() + edgespace;
